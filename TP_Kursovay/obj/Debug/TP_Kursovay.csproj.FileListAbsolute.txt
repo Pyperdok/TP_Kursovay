@@ -1,0 +1,10 @@
+F:\TP_Kursovay\TP_Kursovay\TP_Kursovay\bin\Debug\TP_Kursovay.exe.config
+F:\TP_Kursovay\TP_Kursovay\TP_Kursovay\bin\Debug\TP_Kursovay.exe
+F:\TP_Kursovay\TP_Kursovay\TP_Kursovay\bin\Debug\TP_Kursovay.pdb
+F:\TP_Kursovay\TP_Kursovay\TP_Kursovay\obj\Debug\TP_Kursovay.csprojAssemblyReference.cache
+F:\TP_Kursovay\TP_Kursovay\TP_Kursovay\obj\Debug\TP_Kursovay.Form1.resources
+F:\TP_Kursovay\TP_Kursovay\TP_Kursovay\obj\Debug\TP_Kursovay.Properties.Resources.resources
+F:\TP_Kursovay\TP_Kursovay\TP_Kursovay\obj\Debug\TP_Kursovay.csproj.GenerateResource.cache
+F:\TP_Kursovay\TP_Kursovay\TP_Kursovay\obj\Debug\TP_Kursovay.csproj.CoreCompileInputs.cache
+F:\TP_Kursovay\TP_Kursovay\TP_Kursovay\obj\Debug\TP_Kursovay.exe
+F:\TP_Kursovay\TP_Kursovay\TP_Kursovay\obj\Debug\TP_Kursovay.pdb
