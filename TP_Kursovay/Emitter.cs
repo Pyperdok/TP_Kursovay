@@ -27,6 +27,7 @@ namespace TP_Kursovay
         public Color ColorFrom = Color.White; // начальный цвет частицы
         public Color ColorTo = Color.FromArgb(0, Color.Black); // конечный цвет частиц
 
+        public AntiGravityPoint AntiGravityPoint;
 
         public void UpdateState()
         {
@@ -39,6 +40,8 @@ namespace TP_Kursovay
                 }
                 else
                 {
+                    AntiGravityPoint?.ImpactParticle(particle);
+
                     particle.SpeedY += GravitationY;
                     particle.X += particle.SpeedX;
                     particle.Y += particle.SpeedY;
@@ -67,6 +70,7 @@ namespace TP_Kursovay
             {
                 particle.Draw(g);
             }
+            AntiGravityPoint?.Render(g);
         }
 
         // добавил новый метод, виртуальным, чтобы переопределять можно было
