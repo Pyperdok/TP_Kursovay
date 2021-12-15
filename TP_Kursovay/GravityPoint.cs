@@ -1,39 +1,41 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Windows;
 
 namespace TP_Kursovay
 {
-    public abstract class IImpactPoint
+    public class AntiGravityPoint
     {
-        public float X; // ну точка же, вот и две координаты
+        public float X;
         public float Y;
+        public int Power = 100; //Диаметр окружности
+        public Color color = Color.Cyan; //Перекрашивает частицы в данный цвет при касании
 
-        // абстрактный метод с помощью которого будем изменять состояние частиц
-        // например притягивать
-        public abstract void ImpactParticle(Particle particle);
-    }
-
-    public class AntiGravityPoint : IImpactPoint
-    {
-        public int Power = 100; // сила отторжения
-
-        // а сюда по сути скопировали с минимальными правками то что было в UpdateState
-        public override void ImpactParticle(Particle particle)
+        //Изменяет состояние частицы, в близи данной окружности
+        public void ImpactParticle(Particle particle)
         {
             float gX = X - particle.X;
             float gY = Y - particle.Y;
 
             double r = Math.Sqrt(gX * gX + gY * gY); // считаем расстояние от центра точки до центра частицы
-            if (r + particle.Radius < Power / 2) // если частица оказалось внутри окружности
+            if (r + particle.Radius <= Power / 1.5) // если частица оказалось внутри окружности
             {
                 // то притягиваем ее
                 float r2 = (float)Math.Max(100, gX * gX + gY * gY);
-                particle.SpeedX -= gX * Power / r2;
-                particle.SpeedY -= gY * Power / r2;
+
+                Vector vector1 = new Vector(gX, gY);
+                Vector vector2 = new Vector(particle.SpeedX, particle.SpeedY);
+                double angleBetween;
+
+                angleBetween = Vector.AngleBetween(vector1, vector2);
+                angleBetween = 180 - angleBetween;
+
+                float cs = (float)Math.Cos(angleBetween / 180 * Math.PI);
+                float sn = (float)Math.Sin(angleBetween / 180 * Math.PI);
+
+                particle.SpeedX = particle.SpeedX * cs - particle.SpeedY * sn;
+                particle.SpeedY = -particle.SpeedX * sn + particle.SpeedY * cs;
+                particle.FromColor = color;
             }
         }
 
@@ -41,7 +43,7 @@ namespace TP_Kursovay
         {
             // буду рисовать окружность с диаметром равным Power
             g.DrawEllipse(
-                   new Pen(Color.Red),
+                   new Pen(color),
                    X - Power / 2,
                    Y - Power / 2,
                    Power,

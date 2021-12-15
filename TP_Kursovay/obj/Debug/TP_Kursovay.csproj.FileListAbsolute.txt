@@ -8,3 +8,13 @@ F:\TP_Kursovay\TP_Kursovay\TP_Kursovay\obj\Debug\TP_Kursovay.csproj.GenerateReso
 F:\TP_Kursovay\TP_Kursovay\TP_Kursovay\obj\Debug\TP_Kursovay.csproj.CoreCompileInputs.cache
 F:\TP_Kursovay\TP_Kursovay\TP_Kursovay\obj\Debug\TP_Kursovay.exe
 F:\TP_Kursovay\TP_Kursovay\TP_Kursovay\obj\Debug\TP_Kursovay.pdb
+C:\Users\Pyperdok\Desktop\TP_Kursovay\TP_Kursovay\TP_Kursovay\bin\Debug\TP_Kursovay.exe.config
+C:\Users\Pyperdok\Desktop\TP_Kursovay\TP_Kursovay\TP_Kursovay\bin\Debug\TP_Kursovay.exe
+C:\Users\Pyperdok\Desktop\TP_Kursovay\TP_Kursovay\TP_Kursovay\bin\Debug\TP_Kursovay.pdb
+C:\Users\Pyperdok\Desktop\TP_Kursovay\TP_Kursovay\TP_Kursovay\obj\Debug\TP_Kursovay.csprojAssemblyReference.cache
+C:\Users\Pyperdok\Desktop\TP_Kursovay\TP_Kursovay\TP_Kursovay\obj\Debug\TP_Kursovay.Form1.resources
+C:\Users\Pyperdok\Desktop\TP_Kursovay\TP_Kursovay\TP_Kursovay\obj\Debug\TP_Kursovay.Properties.Resources.resources
+C:\Users\Pyperdok\Desktop\TP_Kursovay\TP_Kursovay\TP_Kursovay\obj\Debug\TP_Kursovay.csproj.GenerateResource.cache
+C:\Users\Pyperdok\Desktop\TP_Kursovay\TP_Kursovay\TP_Kursovay\obj\Debug\TP_Kursovay.csproj.CoreCompileInputs.cache
+C:\Users\Pyperdok\Desktop\TP_Kursovay\TP_Kursovay\TP_Kursovay\obj\Debug\TP_Kursovay.exe
+C:\Users\Pyperdok\Desktop\TP_Kursovay\TP_Kursovay\TP_Kursovay\obj\Debug\TP_Kursovay.pdb

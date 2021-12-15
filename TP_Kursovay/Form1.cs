@@ -4,58 +4,71 @@ using System.Windows.Forms;
 
 namespace TP_Kursovay
 {
+    //Основной класс, отвечающий за работу формы
     public partial class Form1 : Form
     {
-        // собственно список, пока пустой
-        Emitter emitter; // добавили эмиттер
+
+        Emitter emitter;
+
+        //Зеленая окружность
+        AntiGravityPoint left = new AntiGravityPoint
+        {
+            X = 150f,
+            Y = 400f,
+            color = Color.Lime
+        };
+
+        //Фиолетовая окружность
+        AntiGravityPoint right = new AntiGravityPoint
+        {
+            X = 150f,
+            Y = 0f,
+            color = Color.Purple
+        };
+
+        //Конструктор формы
         public Form1()
         {
             InitializeComponent();
             picDisplay.Image = new Bitmap(picDisplay.Width, picDisplay.Height);
 
-            // а тут теперь вручную создаем
             emitter = new Emitter // создаю эмиттер и привязываю его к полю emitter
             {
-                Direction = 0,
-                Spreading = 10,
-                SpeedMin = 10,
-                SpeedMax = 10,
+                Direction = 300,
+                SpeedMin = 20,
+                SpeedMax = 30,
                 ColorFrom = Color.Gold,
-                ColorTo = Color.FromArgb(0, Color.Red),
-                ParticlesPerTick = 10,
-                X = 0,
-                Y = 0,
-
-                AntiGravityPoint = new AntiGravityPoint
-                {
-                    X = 0f,
-                    Y = 0f
-                }
+                ColorTo = Color.FromArgb(0, Color.Red)
             };
+            emitter.antiGravityPoints.Add(left);
+            emitter.antiGravityPoints.Add(right);
         }
 
+        //Таймер формы. Срабатывает каждые 40мс
         private void timer1_Tick(object sender, EventArgs e)
         {
-            emitter.UpdateState(); // тут теперь обновляем эмиттер
+            emitter.UpdateState(); //Обновление частиц эммитера
             using (var g = Graphics.FromImage(picDisplay.Image))
             {
                 g.Clear(Color.Black);
 
-                emitter.Render(g); // а тут теперь рендерим через эмиттер
+                //Рендер всех объектов
+                emitter.Render(g); 
+                left.Render(g);
+                right.Render(g);
+                emitter.antiGravityPoint.Render(g);
             }
 
             picDisplay.Invalidate();
         }
 
+
+        //Обработчик, срабатывающий при передвижении мыши по форме
         private void picDisplay_MouseMove(object sender, MouseEventArgs e)
         {
-            // а тут в эмиттер передаем положение мыфки
-            emitter.MousePositionX = e.X;
-            emitter.MousePositionY = e.Y;
-
-            if (emitter.AntiGravityPoint != null) {
-                emitter.AntiGravityPoint.X = e.X;
-                emitter.AntiGravityPoint.Y = e.Y;
+            if (emitter.antiGravityPoint != null) {
+                emitter.antiGravityPoint.X = e.X;
+                emitter.antiGravityPoint.Y = e.Y;
             }
         }
     }

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Drawing;
 
 namespace TP_Kursovay
@@ -18,6 +17,10 @@ namespace TP_Kursovay
         // добавили генератор случайных чисел
         public static Random rand = new Random();
 
+        // два новых поля под цвет начальный и конечный
+        public Color FromColor;
+        public Color ToColor;
+
         // конструктор по умолчанию будет создавать кастомную частицу
         public Particle()
         {
@@ -34,32 +37,6 @@ namespace TP_Kursovay
             Life = 20 + rand.Next(100);
         }
 
-        public virtual void Draw(Graphics g)
-        {
-            // рассчитываем коэффициент прозрачности по шкале от 0 до 1.0
-            float k = Math.Min(1f, Life / 100);
-            // рассчитываем значение альфа канала в шкале от 0 до 255
-            // по аналогии с RGB, он используется для задания прозрачности
-            int alpha = (int)(k * 255);
-            
-            // создаем цвет из уже существующего, но привязываем к нему еще и значение альфа канала
-            var color = Color.FromArgb(alpha, Color.White);
-            var b = new SolidBrush(color);
-
-            // остальное все так же
-            g.FillEllipse(b, X - Radius, Y - Radius, Radius * 2, Radius * 2);
-
-            b.Dispose();
-        }
-    }
-
-    // новый класс для цветных частиц
-    public class ParticleColorful : Particle
-    {
-        // два новых поля под цвет начальный и конечный
-        public Color FromColor;
-        public Color ToColor;
-
         // для смеси цветов
         public static Color MixColor(Color color1, Color color2, float k)
         {
@@ -72,7 +49,7 @@ namespace TP_Kursovay
         }
 
         // ну и отрисовку перепишем
-        public override void Draw(Graphics g)
+        public void Draw(Graphics g)
         {
             float k = Math.Min(1f, Life / 100);
 
