@@ -26,7 +26,7 @@ namespace TP_Kursovay
         public Color ColorFrom = Color.Gold; // начальный цвет частицы
         public Color ColorTo = Color.FromArgb(0, Color.Black); // конечный цвет частиц
 
-        public AntiGravityPoint antiGravityPoint = new AntiGravityPoint();
+        public AntiGravityPoint antiGravityPoint = new AntiGravityPoint(); //Окружность, прикрепленная мышкой
         public List<AntiGravityPoint> antiGravityPoints = new List<AntiGravityPoint>();
 
         //Обновляет состояние частиц эммитера

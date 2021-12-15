@@ -7,9 +7,7 @@ namespace TP_Kursovay
     //Основной класс, отвечающий за работу формы
     public partial class Form1 : Form
     {
-
         Emitter emitter;
-
         //Зеленая окружность
         AntiGravityPoint left = new AntiGravityPoint
         {
@@ -31,7 +29,7 @@ namespace TP_Kursovay
         {
             InitializeComponent();
             picDisplay.Image = new Bitmap(picDisplay.Width, picDisplay.Height);
-
+            picDisplay.MouseWheel += picDisplay_MouseWheel;
             emitter = new Emitter // создаю эмиттер и привязываю его к полю emitter
             {
                 Direction = 300,
@@ -62,13 +60,25 @@ namespace TP_Kursovay
             picDisplay.Invalidate();
         }
 
-
         //Обработчик, срабатывающий при передвижении мыши по форме
         private void picDisplay_MouseMove(object sender, MouseEventArgs e)
         {
             if (emitter.antiGravityPoint != null) {
                 emitter.antiGravityPoint.X = e.X;
                 emitter.antiGravityPoint.Y = e.Y;
+            }
+        }
+
+        //Обработчик, меняет размер окружности, прикрепленный к мышке
+        private void picDisplay_MouseWheel(object sender, MouseEventArgs e)
+        {
+            if(e.Delta >= 0 && emitter.antiGravityPoint.Power <= 200)
+            {
+                emitter.antiGravityPoint.Power += (int)(e.Delta / 10f);
+            }
+            else if(emitter.antiGravityPoint.Power >= 30 && e.Delta < 0)
+            {
+                emitter.antiGravityPoint.Power -= (int)(-e.Delta / 10f);
             }
         }
     }

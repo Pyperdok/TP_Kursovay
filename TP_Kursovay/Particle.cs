@@ -6,22 +6,22 @@ namespace TP_Kursovay
     public class Particle
     {
         public int Radius; // радуис частицы
-        public float X; // X координата положения частицы в пространстве
-        public float Y; // Y координата положения частицы в пространстве
+        public float X;   // X координата положения частицы в пространстве
+        public float Y;   // Y координата положения частицы в пространстве
 
         public float SpeedX; // скорость перемещения по оси X
         public float SpeedY; // скорость перемещения по оси Y
 
         public float Life; // запас здоровья частицы
 
-        // добавили генератор случайных чисел
+        //Генератор случайных чисел
         public static Random rand = new Random();
 
-        // два новых поля под цвет начальный и конечный
+        //Начальный и конечный цвет
         public Color FromColor;
         public Color ToColor;
 
-        // конструктор по умолчанию будет создавать кастомную частицу
+        //Конструктор по умолчанию будет создавать кастомную частицу
         public Particle()
         {
             // генерируем произвольное направление и скорость
@@ -32,12 +32,11 @@ namespace TP_Kursovay
             SpeedX = (float)(Math.Cos(direction / 180 * Math.PI) * speed);
             SpeedY = -(float)(Math.Sin(direction / 180 * Math.PI) * speed);
 
-            // а это не трогаем
             Radius = 2 + rand.Next(10);
             Life = 20 + rand.Next(100);
         }
 
-        // для смеси цветов
+        //Смешивает цвета
         public static Color MixColor(Color color1, Color color2, float k)
         {
             return Color.FromArgb(
@@ -48,7 +47,7 @@ namespace TP_Kursovay
             );
         }
 
-        // ну и отрисовку перепишем
+        //Отрисоывает частицу
         public void Draw(Graphics g)
         {
             float k = Math.Min(1f, Life / 100);
@@ -58,7 +57,6 @@ namespace TP_Kursovay
             var b = new SolidBrush(color);
 
             g.FillEllipse(b, X - Radius, Y - Radius, Radius * 2, Radius * 2);
-
             b.Dispose();
         }
     }
