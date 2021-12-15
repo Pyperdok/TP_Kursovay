@@ -4,24 +4,23 @@ using System.Drawing;
 
 namespace TP_Kursovay
 {
+    //Класс, создающий и управляющий частицами
     public class Emitter
     {
-        List<Particle> particles = new List<Particle>();
-        public int MousePositionX;
-        public int MousePositionY;
-        public float GravitationY = 1f; // пусть гравитация будет силой один пиксель за такт, нам хватит
+        List<Particle> particles = new List<Particle>(); //Список частиц
+        public float GravitationY = 1f; //Гравитация Y
         public int ParticlesCount = 1500;
 
-        public int X; // координата X центра эмиттера, будем ее использовать вместо MousePositionX
-        public int Y; // соответствующая координата Y 
-        public int Direction = 0; // вектор направления в градусах куда сыпет эмиттер
-        public int Spreading = 0; // разброс частиц относительно Direction
-        public int SpeedMin = 1; // начальная минимальная скорость движения частицы
-        public int SpeedMax = 10; // начальная максимальная скорость движения частицы
-        public int RadiusMin = 2; // минимальный радиус частицы
+        public int X;
+        public int Y; 
+        public int Direction = 0; //Направление в градусах куда сыпет эмиттер
+        public int Spreading = 0; //Разброс частиц относительно Direction
+        public int SpeedMin = 1;  // начальная минимальная скорость движения частицы
+        public int SpeedMax = 10;  // начальная максимальная скорость движения частицы
+        public int RadiusMin = 2;  // минимальный радиус частицы
         public int RadiusMax = 10; // максимальный радиус частицы
-        public int LifeMin = 20; // минимальное время жизни частицы
-        public int LifeMax = 100; // максимальное время жизни частицы
+        public int LifeMin = 20;   // минимальное время жизни частицы
+        public int LifeMax = 100;  // максимальное время жизни частицы
         public int ParticlesPerTick = 20; // добавил новое поле
 
         public Color ColorFrom = Color.Gold; // начальный цвет частицы
@@ -30,20 +29,20 @@ namespace TP_Kursovay
         public AntiGravityPoint antiGravityPoint = new AntiGravityPoint();
         public List<AntiGravityPoint> antiGravityPoints = new List<AntiGravityPoint>();
 
+        //Обновляет состояние частиц эммитера
         public void UpdateState()
         {
             foreach (var particle in particles)
             {
-                particle.Life -= 0.5f;  // не трогаем
+                particle.Life -= 0.5f; //Уменьшаем жизнь частицы
                 if (particle.Life <= 0)
                 {
-                    ResetParticle(particle); // заменили этот блок на вызов сброса частицы 
+                    ResetParticle(particle); //Перемещает частицы в точку эммитера
                 }
                 else
                 {
                     particle.X += particle.SpeedX;
                     particle.Y += particle.SpeedY;
-
                     particle.SpeedY += GravitationY;
 
                     antiGravityPoint?.ImpactParticle(particle);
@@ -53,13 +52,13 @@ namespace TP_Kursovay
                 }
             }
 
-            // генерирую не более 10 штук за тик
+            //Генерируем за тик не более 10 частиц
             for (var i = 0; i < 10; ++i)
             {
                 if (particles.Count < ParticlesCount)
                 {
-                    var particle = CreateParticle(); // и собственно теперь тут его вызываем
-                    ResetParticle(particle); // добавили вызов ResetParticle
+                    var particle = CreateParticle(); 
+                    ResetParticle(particle);
                     particles.Add(particle);
                 }
                 else
@@ -69,6 +68,7 @@ namespace TP_Kursovay
             }
         }
 
+        //Отрисовывает все частицы
         public void Render(Graphics g)
         {
             foreach (var particle in particles)
@@ -78,7 +78,7 @@ namespace TP_Kursovay
 
         }
 
-        // добавил новый метод, виртуальным, чтобы переопределять можно было
+        //Перемещает частицу в точку эммитера
         public virtual void ResetParticle(Particle particle)
         {
             particle.Life = Particle.rand.Next(LifeMin, LifeMax);
@@ -98,7 +98,7 @@ namespace TP_Kursovay
             particle.Radius = Particle.rand.Next(RadiusMin, RadiusMax);
         }
 
-        /* добавил метод */
+        //Создает частицу
         public Particle CreateParticle()
         {
             var particle = new Particle();
